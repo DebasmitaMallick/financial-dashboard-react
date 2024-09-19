@@ -47,9 +47,6 @@ const StatisticsPage: React.FC = () => {
   return (
     <div className="p-6 bg-white rounded-lg shadow-md">
       <h1 className="text-2xl font-bold mb-4">Stock Market Statistics</h1>
-      <p className="text-gray-700 mb-6">
-        View important statistics related to stock prices, volume, and other key metrics.
-      </p>
       <div id="chart" className="h-[350px]">
         <ApexCharts options={chartOptions} series={transformedSeries} type="line" height={350} />
       </div>
