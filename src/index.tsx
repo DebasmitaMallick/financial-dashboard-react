@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { PriceDetailsProvider } from "./components/context/PriceDetailsProvider";
+import { PriceDetailsProvider } from "./context/PriceDetailsProvider";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

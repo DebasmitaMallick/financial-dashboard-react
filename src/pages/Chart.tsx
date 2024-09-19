@@ -12,7 +12,7 @@ interface TimeSeriesEntry {
 }
 
 // defining the structure of the financial data with dates as keys
-interface FinancialData {
+export interface FinancialData {
   [date: string]: TimeSeriesEntry; // The time series data indexed by date/time strings
 }
 

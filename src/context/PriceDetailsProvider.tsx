@@ -1,4 +1,5 @@
 import { createContext, FC, ReactNode, useCallback, useContext, useState } from "react";
+import { StockData } from "../pages/Chart";
 
 interface PriceDetailsContextType {
   closeValue: {
@@ -6,6 +7,8 @@ interface PriceDetailsContextType {
     last: number
   };
   closeValueHandler: (type: string, val: number) => void;
+  chartData: StockData[];
+  chartDataHandler: (data: StockData[]) => void;
 }
 
 const PriceDetailsContext = createContext<PriceDetailsContextType>({
@@ -13,7 +16,9 @@ const PriceDetailsContext = createContext<PriceDetailsContextType>({
     first: 0,
     last: 0
   },
-  closeValueHandler: () => {}
+  closeValueHandler: () => {},
+  chartData: [],
+  chartDataHandler: () => {},
 });
 
 const usePriceDetailsContext = () => useContext(PriceDetailsContext);
@@ -26,6 +31,8 @@ export const PriceDetailsProvider: FC<DetailsProps> = ({ children }) => {
     first: 0,
     last: 0
   });
+
+  const [chartData, setChartData] = useState<StockData[]>([]);
   
   const handleCloseValue = useCallback((type: string, val: number) => {
     setCloseValue((prevCloseValue) => ({
@@ -34,9 +41,15 @@ export const PriceDetailsProvider: FC<DetailsProps> = ({ children }) => {
     }))
   }, [])
 
+  const handleChartData = useCallback((data: StockData[]) => {
+    setChartData(data);
+  }, [])
+
   const contextValue = {
     closeValue,
-    closeValueHandler: handleCloseValue
+    closeValueHandler: handleCloseValue,
+    chartData,
+    chartDataHandler: handleChartData
   }
   return (
     <PriceDetailsContext.Provider value={contextValue}>

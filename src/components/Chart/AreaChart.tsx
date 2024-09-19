@@ -2,7 +2,7 @@ import { ApexOptions } from "apexcharts";
 import React from "react";
 import ApexCharts from "react-apexcharts";
 import { StockData } from "../../pages/Chart";
-import usePriceDetailsContext from "../context/PriceDetailsProvider";
+import usePriceDetailsContext from "../../context/PriceDetailsProvider";
 
 interface ApexChartProps {
   seriesData: StockData[];
@@ -54,11 +54,17 @@ const AreaChart: React.FC<ApexChartProps> = ({ seriesData }) => {
         labels: {
           show: false,
         },
+        axisBorder: {
+          show: true, 
+        },
       },
       {
         opposite: true,
         labels: {
           show: false,
+        },
+        axisBorder: {
+          show: true,
         },
       },
     ],
@@ -68,7 +74,6 @@ const AreaChart: React.FC<ApexChartProps> = ({ seriesData }) => {
         width: 1, 
         position: "back", 
         stroke: {
-          color: "#FF4560", 
           width: 1,
           dashArray: 5, 
         },
@@ -81,7 +86,7 @@ const AreaChart: React.FC<ApexChartProps> = ({ seriesData }) => {
         show: false, 
       },
       axisBorder: {
-        show: false, 
+        show: true, 
       },
       axisTicks: {
         show: false, 
@@ -149,6 +154,19 @@ const AreaChart: React.FC<ApexChartProps> = ({ seriesData }) => {
     legend: {
       show: false,
     },
+    grid: {
+      show: true, 
+      xaxis: {
+        lines: {
+          show: true, 
+        },
+      },
+      yaxis: {
+        lines: {
+          show: false,
+        },
+      },
+    }
   };
 
   const transformedAreaSeries = {

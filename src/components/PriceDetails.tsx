@@ -1,5 +1,5 @@
 import React from "react";
-import usePriceDetailsContext from "./context/PriceDetailsProvider";
+import usePriceDetailsContext from "../context/PriceDetailsProvider";
 
 const PriceDetails = () => {
   const {

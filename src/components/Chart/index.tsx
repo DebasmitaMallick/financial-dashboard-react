@@ -4,7 +4,7 @@ import { getDataForDays } from "../../utils/helper";
 import { FullScreen, useFullScreenHandle } from "react-full-screen";
 import ChartActions from "./Actions";
 import AreaChart from "./AreaChart";
-import usePriceDetailsContext from "../context/PriceDetailsProvider";
+import usePriceDetailsContext from "../../context/PriceDetailsProvider";
 
 interface ChartProps {
   data: StockData[];
@@ -18,7 +18,7 @@ export interface ChartData {
 }
 
 const Chart: FC<ChartProps> = ({ data }) => {
-  const {closeValueHandler} = usePriceDetailsContext();
+  const {closeValueHandler, chartDataHandler} = usePriceDetailsContext();
 
   const chartData = useMemo<ChartData>(
     () => ({
@@ -39,7 +39,8 @@ const Chart: FC<ChartProps> = ({ data }) => {
     const seriesData = chartData[timeRange]
     closeValueHandler("last", parseFloat(seriesData[0]["4. close"]))
     closeValueHandler("first", parseFloat(seriesData[seriesData.length-1]["4. close"]))
-  }, [chartData, timeRange, closeValueHandler])
+    chartDataHandler(seriesData)
+  }, [chartData, timeRange, closeValueHandler, chartDataHandler])
 
   const handle = useFullScreenHandle();
   return (
